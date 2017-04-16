@@ -1,0 +1,14 @@
+# OSX Artifacts
+*.DS_Store
+
+# Python Binarys
+*.pyc
+
+# Logs
+*.log
+
+# Vim Swap Files
+*.sw*
+
+# Virtualenv
+*/venv
