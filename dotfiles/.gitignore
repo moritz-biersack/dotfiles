@@ -8,7 +8,7 @@
 *.log
 
 # Vim Swap Files
-*.sw*
+*.sw?
 
 # Virtualenv
 */venv
