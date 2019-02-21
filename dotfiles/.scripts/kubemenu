@@ -1,0 +1,35 @@
+#!/bin/bash
+
+selection=`echo -e "get pods\npod names\nlogs\nshell in pod\ncurrent context\nlist contexts\nswitch context" | dmenu`
+
+case $selection in
+"get pods")
+    watch -n1 -x kubectl get pods
+    ;;
+"pod names")
+    export POD=`kubectl get pods -o=name | sed "s/^.\{4\}//" | dmenu`
+    echo $POD
+    ;;
+"logs")
+    export POD=`kubectl get pods -o=name | sed "s/^.\{4\}//" | dmenu`
+    kubectl logs -f $POD
+    ;;
+"shell in pod")
+    export POD=`kubectl get pods -o=name | sed "s/^.\{4\}//" | dmenu`
+    kubectl exec -it $POD /bin/bash
+    if [ $? -ne 0 ]; then echo "Retry with /bin/ash"; kubectl exec -it $POD /bin/ash; fi
+    ;;
+"current context")
+    kubectl config current-context
+    ;;
+"list contexts")
+    kubectl config get-contexts
+    ;;
+"switch context")
+    context=`kubectl config get-contexts -o=name | dmenu`
+    kubectl config use-context $context
+    ;;
+*)
+    echo Nothing selected
+esac
+

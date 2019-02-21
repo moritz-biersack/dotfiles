@@ -13,6 +13,7 @@ let &t_Co=256
 " Color scheme
 set background=dark
 "let g:solarized_termcolors=256
+let g:hybrid_custom_term_colors = 1
 colorscheme hybrid
 
 " Highlight search
@@ -31,7 +32,7 @@ set smarttab
 set ai "Auto indent
 set si "Smart indent
 "avoid unindent comment
-inoremap # X# 
+"inoremap # X# 
 set wrap "Wrap lines
 
 " Visual mode pressing * or # searches for the current selection
@@ -50,7 +51,7 @@ nnoremap ; :
 nnoremap : ;
 
 " pathogen.vim for plugin loading
-"execute pathogen#infect()
+execute pathogen#infect()
 
 " Relative line numbers
 function! NumberToggle()
@@ -88,6 +89,7 @@ call matchadd('ColorColumn', '\%81v', 100)
 set laststatus=2
 
 " Settings for ctrlp
+set runtimepath^=~/.vim/bundle/ctrlp.vim
 let g:ctrlp_max_height = 30
 set wildignore+=*.pyc
 
@@ -96,7 +98,7 @@ map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 " Syntastic (lint tool)
 set statusline+=%#warningmsg# 
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
